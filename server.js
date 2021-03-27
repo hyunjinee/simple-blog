@@ -8,6 +8,9 @@ const methodOverride = require("method-override");
 
 const PORT = process.env.PORT || 5000;
 const app = express();
+app.set("view engine", "ejs");
+app.use(express.urlencoded({ extended: false }));
+app.use(methodOverride("_method"));
 // "mongodb://localhost/blog"
 mongoose
   .connect(process.env.CONNECTION_URL, {
@@ -21,10 +24,6 @@ mongoose
     )
   )
   .catch((error) => console.log(`${error} did not connect`));
-
-app.set("view engine", "ejs");
-app.use(express.urlencoded({ extended: false }));
-app.use(methodOverride("_method"));
 
 app.get("/", async (req, res) => {
   const articles = await Article.find().sort({ createdAt: "desc" });
