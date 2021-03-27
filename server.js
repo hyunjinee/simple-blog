@@ -13,11 +13,14 @@ app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride("_method"));
 // "mongodb://localhost/blog"
 mongoose
-  .connect(process.env.CONNECTION_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-  })
+  .connect(
+    /*process.env.CONNECTION_URL*/ "mongodb+srv://hyunjin:leehj0110@cluster0.uewoi.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true,
+    }
+  )
   .then(() =>
     app.listen(PORT, () =>
       console.log(`Server Running on Port: http://localhost:${PORT}`)
