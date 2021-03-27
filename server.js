@@ -1,6 +1,6 @@
-require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
+require("dotenv").config();
 const Article = require("./models/article");
 const articleRouter = require("./routes/articles");
 const methodOverride = require("method-override");
