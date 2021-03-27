@@ -10,9 +10,13 @@ const app = express();
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride("_method"));
+const dbURL = process.env.URL;
+console.log(typeof dbURL);
+console.log(dbURL);
+
 // "mongodb://localhost/blog"
 mongoose
-  .connect(process.env.URL, {
+  .connect(dbURL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
