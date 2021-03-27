@@ -6,13 +6,21 @@ const methodOverride = require("method-override");
 const dotenv = require("dotenv");
 
 dotenv.config();
+const PORT = process.env.PORT || 5000;
 const app = express();
 // "mongodb://localhost/blog"
-mongoose.connect(process.env.CONNECTION_URL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useCreateIndex: true,
-});
+mongoose
+  .connect(process.env.CONNECTION_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+  })
+  .then(() =>
+    app.listen(PORT, () =>
+      console.log(`Server Running on Port: http://localhost:${PORT}`)
+    )
+  )
+  .catch((error) => console.log(`${error} did not connect`));
 
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: false }));
@@ -25,4 +33,4 @@ app.get("/", async (req, res) => {
 
 app.use("/articles", articleRouter);
 
-app.listen(process.env.PORT || 5000);
+// app.listen(process.env.PORT || 5000);
