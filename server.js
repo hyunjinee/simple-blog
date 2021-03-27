@@ -1,11 +1,11 @@
+const dotenv = require("dotenv");
+dotenv.config();
 const express = require("express");
 const mongoose = require("mongoose");
 const Article = require("./models/article");
 const articleRouter = require("./routes/articles");
 const methodOverride = require("method-override");
-const dotenv = require("dotenv");
 
-dotenv.config();
 const PORT = process.env.PORT || 5000;
 const app = express();
 // "mongodb://localhost/blog"
