@@ -5,7 +5,7 @@ const articleRouter = require("./routes/articles");
 const methodOverride = require("method-override");
 const dotenv = require("dotenv");
 
-dotenv.config({ path: "ENV_FILENAME" });
+dotenv.config();
 const PORT = process.env.PORT || 5000;
 const app = express();
 // "mongodb://localhost/blog"
